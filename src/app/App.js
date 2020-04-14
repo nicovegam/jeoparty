@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Router } from "@reach/router";
 import Home from "./Home";
+import Game from "./Game";
 import Question from "./Question";
 
 function App() {
+  // useEffect(() => {}, [categories]);
+
   return (
     <Router style={{ width: "100%" }}>
       <Home path="/" />
-      <Question path="/:category/:value/" />
+      <Game path="/game/" />
+      <Question path="/game/:category/:value/" />
     </Router>
   );
 }

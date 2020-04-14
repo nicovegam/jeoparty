@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "@reach/router";
-import Button from "@material-ui/core/Button";
-import { setCategories } from "../services/categories";
-import categories from "../categories";
+import Category from "./Category";
+import { getCategories } from "../services/categories";
 
 const useStyles = makeStyles((theme) => ({
   app: {
@@ -12,36 +10,34 @@ const useStyles = makeStyles((theme) => ({
   appHeader: {
     backgroundColor: "#282c34",
     minHeight: "100vh",
+
     fontSize: "calc(10px + 2vmin)",
     color: "white",
+  },
+  categories: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
   },
-  link: {
-    textDecoration: "none",
-    color: "white",
-  },
 }));
 
-export default function Category({ category }) {
+function Game() {
   const classes = useStyles();
+  const categories = getCategories();
 
   return (
     <div className={classes.app}>
       <header className={classes.appHeader}>
-        <Button variant="contained" color="primary">
-          <Link
-            to="/game/"
-            onClick={() => setCategories(categories)}
-            className={classes.link}
-          >
-            EMPEZAR
-          </Link>
-        </Button>
+        <div className={classes.categories}>
+          {categories.map((category) => (
+            <Category category={category} key={category.name}></Category>
+          ))}
+        </div>
       </header>
     </div>
   );
 }
+
+export default Game;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "@reach/router";
-import { getQuestion } from "../services/categories";
+import { getQuestion, setQuestionUsed } from "../services/categories";
 
 const useStyles = makeStyles((theme) => ({
   app: {
@@ -36,12 +36,17 @@ const useStyles = makeStyles((theme) => ({
 function Question(props) {
   const classes = useStyles();
   const question = getQuestion(props.category, props.value);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(question.isUsed);
+
+  const handleShow = () => {
+    setShowAnswer(true);
+    setQuestionUsed(props.category, props.value, true);
+  };
 
   return (
     <div className={classes.app}>
       <header className={classes.appHeader}>
-        <Link to="/">Volver</Link>
+        <Link to="/game/">Volver</Link>
         <div className={classes.question}>
           <div className={classes.column}>
             <h2>{question.question}</h2>
@@ -50,10 +55,7 @@ function Question(props) {
           <div className={classes.column}>
             <button
               type="button"
-              onClick={() => {
-                setShowAnswer(true);
-                question.isUsed = true;
-              }}
+              onClick={handleShow}
               className={showAnswer ? classes.hide : {}}
             >
               Mostrar respuesta

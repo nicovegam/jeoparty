@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
   ul: {
     listStyleType: "none",
   },
+  link: {
+    textDecoration: "none",
+    color: "white",
+  },
 }));
 
 export default function Category({ category }) {
@@ -24,7 +28,12 @@ export default function Category({ category }) {
               variant="contained"
               color={q.isUsed ? "secondary" : "primary"}
             >
-              <Link to={`/${category.name}/${q.value}`}>{q.value}</Link>
+              <Link
+                to={`/game/${category.name}/${q.value}`}
+                className={classes.link}
+              >
+                {q.value}
+              </Link>
             </Button>
           </li>
         ))}
