@@ -5,8 +5,6 @@ import Game from "./Game";
 import Question from "./Question";
 
 function App() {
-  // useEffect(() => {}, [categories]);
-
   return (
     <Router style={{ width: "100%" }}>
       <Home path="/" />

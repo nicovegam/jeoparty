@@ -8,12 +8,12 @@ export function getCategories() {
   return retrieveCategories();
 }
 
-export function getCategory(name) {
+export function getCategoryByName(name) {
   return getCategories().find((c) => c.name === name);
 }
 
 export function getQuestion(name, value) {
-  const category = getCategory(name);
+  const category = getCategoryByName(name);
   return category ? category.questions.find((q) => q.value === value) : null;
 }
 

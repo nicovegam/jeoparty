@@ -2,8 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "@reach/router";
 import Button from "@material-ui/core/Button";
-import { setCategories } from "../services/categories";
-import categories from "../categories";
+import { setCategories } from "../services/game";
+import categories from "../game";
 
 const useStyles = makeStyles((theme) => ({
   app: {

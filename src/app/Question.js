@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "@reach/router";
-import { getQuestion, setQuestionUsed } from "../services/categories";
+import { getQuestion, setQuestionUsed } from "../services/game";
 
 const useStyles = makeStyles((theme) => ({
   app: {

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Category from "./Category";
-import { getCategories } from "../services/categories";
+import { getCategories } from "../services/game";
 
 const useStyles = makeStyles((theme) => ({
   app: {
