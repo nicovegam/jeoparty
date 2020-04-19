@@ -24,17 +24,23 @@ export default function Category({ category }) {
       <ul className={classes.ul}>
         {category.questions.map((q) => (
           <li key={q.value}>
-            <Button
-              variant="contained"
-              color={q.isUsed ? "secondary" : "primary"}
-            >
-              <Link
-                to={`/game/${category.name}/${q.value}`}
-                className={classes.link}
+            {q.question && q.answer ? (
+              <Button
+                variant="contained"
+                color={q.isUsed ? "secondary" : "primary"}
               >
+                <Link
+                  to={`/game/${category.name}/${q.value}`}
+                  className={classes.link}
+                >
+                  {q.value}
+                </Link>
+              </Button>
+            ) : (
+              <Button variant="contained" disabled>
                 {q.value}
-              </Link>
-            </Button>
+              </Button>
+            )}
           </li>
         ))}
       </ul>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import { Link } from "@reach/router";
 import { getQuestion, setQuestionUsed } from "../services/game";
+import Countdown from "./Countdown";
 
 const useStyles = makeStyles((theme) => ({
   app: {
@@ -23,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
   column: {
     width: "50%",
+    display: "flex",
+    flexDirection: "column",
   },
+  imageContainer: {},
   image: {
     width: "auto",
     maxHeight: "70vh",
@@ -50,19 +55,34 @@ function Question(props) {
         <div className={classes.question}>
           <div className={classes.column}>
             <h2>{question.question}</h2>
-            <img className={classes.image} src={question.image} />
+            <div className={classes.imageContainer}>
+              <img
+                className={classes.image}
+                src={
+                  question.localImage
+                    ? require(`../assets/${question.localImage}`)
+                    : question.image
+                }
+              />
+            </div>
           </div>
           <div className={classes.column}>
-            <button
-              type="button"
-              onClick={handleShow}
-              className={showAnswer ? classes.hide : {}}
-            >
-              Mostrar respuesta
-            </button>
-            <span className={showAnswer ? {} : classes.hide}>
-              {question.answer}
-            </span>
+            <div className={classes.answer}>
+              <div className={showAnswer ? classes.hide : {}}>
+                <Countdown />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleShow}
+                >
+                  Mostrar respuesta
+                </Button>
+              </div>
+
+              <span className={showAnswer ? {} : classes.hide}>
+                {question.answer}
+              </span>
+            </div>
           </div>
         </div>
       </header>
